@@ -1,0 +1,21 @@
+server:
+  port: 8010
+
+
+spring:
+  application:
+    name: gateway-server
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      routes:
+        - id: privoder-service
+          uri: lb://privoder-service
+          predicates:
+            # context-path 浏览器访问localhost:8010/privoder
+            - Path=/privoder/**
+

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: payment-service
+    name: privoder-service
   cloud:
     nacos:
       config:
@@ -15,6 +15,10 @@ spring:
         ds1:
           nacos:
             server-addr: 127.0.0.1:8848
-            dataId: ${spring.application.name}-flow-rules
+            # dataId: ${spring.application.name}-flow-rules
+            dataId: privoder-service-flow-rules
             data-type: json
             rule-type: flow
+server:
+  servlet:
+    context-path: /privoder

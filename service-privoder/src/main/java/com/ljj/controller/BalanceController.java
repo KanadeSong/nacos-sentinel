@@ -32,10 +32,27 @@ public class BalanceController {
         }
     };
 
-    @RequestMapping("/pay/balance")
+    @RequestMapping("/service/balance")
     @SentinelResource(value = "protected-resource", blockHandler = "handleBlock")
     public Balance getBalance(Integer id) {
-        System.out.println("request: /pay/balance?id=" + id + ", sleep: " + sleep);
+        System.out.println("request: /service/balance?id=" + id + ", sleep: " + sleep);
+        if (sleep > 0) {
+            try {
+                Thread.sleep(sleep);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        if (id != null && balanceMap.containsKey(id)) {
+            return balanceMap.get(id);
+        }
+        return new Balance(0, 0, 0, "不存在");
+    }
+
+    @RequestMapping("/service2/balance")
+    @SentinelResource(value = "protected-resource", blockHandler = "handleBlock2")
+    public Balance getBalance2(Integer id) {
+        System.out.println("request: /service2/balance?id=" + id + ", sleep: " + sleep);
         if (sleep > 0) {
             try {
                 Thread.sleep(sleep);
@@ -51,5 +68,9 @@ public class BalanceController {
 
     public Balance handleBlock(Integer id, BlockException e) {
         return new Balance(0, 0, 0, "限流");
+    }
+
+    public Balance handleBlock2(Integer id, BlockException e) {
+        return new Balance(0, 0, 0, "限流2");
     }
 }
