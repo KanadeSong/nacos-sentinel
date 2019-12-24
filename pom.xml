@@ -5,7 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>gateway</module>
-        <module>service-privoder</module>
+        <module>service-provider</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

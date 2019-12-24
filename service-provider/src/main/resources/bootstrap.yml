@@ -1,6 +1,11 @@
+server:
+  servlet:
+    context-path: /provider
+  port: 8082
+
 spring:
   application:
-    name: privoder-service
+    name: provider-service
   cloud:
     nacos:
       config:
@@ -16,9 +21,8 @@ spring:
           nacos:
             server-addr: 127.0.0.1:8848
             # dataId: ${spring.application.name}-flow-rules
-            dataId: privoder-service-flow-rules
+            dataId: provider-service-flow-rules
             data-type: json
             rule-type: flow
-server:
-  servlet:
-    context-path: /privoder
+
+sleep: 1000

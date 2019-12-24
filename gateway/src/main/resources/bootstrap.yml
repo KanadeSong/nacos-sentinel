@@ -11,11 +11,20 @@ spring:
         server-addr: 127.0.0.1:8848
       discovery:
         server-addr: 127.0.0.1:8848
+    sentinel:
+      eager: true
+      transport:
+        dashboard: localhost:8080
     gateway:
+      discovery:
+        locator:
+          lower-case-service-id: true
       routes:
-        - id: privoder-service
-          uri: lb://privoder-service
+        - id: provider-service
+          uri: lb://provider-service
           predicates:
-            # context-path 浏览器访问localhost:8010/privoder
-            - Path=/privoder/**
+            # context-path 浏览器访问localhost:8010/provider
+            - Path=/provider/**
+
+
 
